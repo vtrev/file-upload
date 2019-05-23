@@ -1,0 +1,27 @@
+<html>
+
+<head>
+    <title>Upload file</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</head>
+    
+<body>
+    <h5>Upload file</h5>
+    <form ref='uploadForm' id='quizAttachmentUploadForm' action='uploadQuizAttachment' method='post'
+        encType="multipart/form-data">
+        <input type="file" name="quizAttachment" />
+        <input type='submit' value='Upload!' />
+    </form>
+    <script>
+        async function uploadQuizAttachment(){
+           let upload = await axios.post('/uploadQuizAttachment',{
+               name:file1
+           }) 
+        }
+
+    </script>
+</body>
+
+</html>
