@@ -22,13 +22,8 @@ app.post('/uploadQuizAttachment', function(req, res) {
   }
 //get uploaded
   let quizAttachment = req.files.quizAttachment;
-console.log('file uploaded url :' + quizAttachment.tempFilePath);
-  //now resize the image to 1024px using Sharp
-  let tmpUrl = quizAttachment.tempFilePath;
-  sharp(tmpUrl).resize({width:1024})
-  .toFile('resizedQuizAttachment.png').then(()=>{
-  console.log("image resized");
-  });
+console.log('file name :' + quizAttachment.name);
+  
 
   //send  back the url to the client for preview
   // console.log('sending back the image to client for preview');
@@ -40,6 +35,15 @@ console.log('file uploaded url :' + quizAttachment.tempFilePath);
       return res.status(500).send(err);
       console.log('image uploaded')
   });
+
+//now resize the image to 1024px using Sharp
+let tmpUrl = quizAttachment.tempFilePath;
+sharp(tmpUrl).resize({width:1024})
+.toFile('resizedQuizAttachment.png').then(()=>{
+console.log("image resized");
+});
+
+
 
   res.send('uploaded!')
 

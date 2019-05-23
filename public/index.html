@@ -3,24 +3,50 @@
 <head>
     <title>Upload file</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./simple-grid.css">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-</head>
-    
-<body>
-    <h5>Upload file</h5>
-    <form ref='uploadForm' id='quizAttachmentUploadForm' action='uploadQuizAttachment' method='post'
-        encType="multipart/form-data">
-        <input type="file" name="quizAttachment" />
-        <input type='submit' value='Upload!' />
-    </form>
-    <script>
-        async function uploadQuizAttachment(){
-           let upload = await axios.post('/uploadQuizAttachment',{
-               name:file1
-           }) 
+    <style>
+        .center {
+            text-align: center;
         }
 
+        .image-preview img {
+            width: 100%;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <div class="row">
+        <div class="col-12 center">
+            <h5>Upload file</h5>
+        </div>
+        <div class="col-8">
+            <form ref='uploadForm' id='quizAttachmentUploadForm' action='uploadQuizAttachment' method='post'
+                encType="multipart/form-data">
+                <input type="file" name="quizAttachment" />
+                <input type='submit' value='Upload!' />
+            </form>
+        </div>
+        <div class="col-4 image-preview">
+            <img>
+        </div>
+
+        <div>
+
+
+        </div>
+    </div>
+    <script>
+        async function uploadQuizAttachment() {
+            let upload = await axios.post('/uploadQuizAttachment', {
+                name: file1
+            })
+        }
     </script>
 </body>
 
