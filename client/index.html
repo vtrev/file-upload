@@ -1,0 +1,53 @@
+<html>
+<head>
+	<title>Upload file</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./simple-grid.css">
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+	<style>
+		.center {
+			text-align: center;
+		}
+
+		#quiz-attachment img {
+			width: 300px;
+			height: 250px;
+		}
+	</style>
+
+</head>
+
+<body>
+
+
+	<div class="row">
+		<div class="col-12 center">
+			<h5>Upload file</h5>
+		</div>
+		<div id="quiz-attachment">
+
+		</div>
+		<div>
+			<img id="attchment-photo" class="image-preview" />
+		</div>
+	</div>
+
+
+	<div>
+
+
+	</div>
+	</div>
+	<script>
+		async function uploadQuizAttachment() {
+			let upload = await axios.post('/api/uploadQuizAttachment', {
+				name: quizAttachment
+			});
+			console.log(upload)
+		}
+	</script>
+	<script src="index.jsx"></script>
+</body>
+
+</html>
