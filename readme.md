@@ -1,6 +1,5 @@
-# Small react app
-
-React example app using ParcelJS & Axios to call a API.
+# Small app to upload file to server running nodeJs and display it back 
+App using ParcelJS & Axios to call a API on the same port as nodejs.
 
 Install the dependencies:
 
