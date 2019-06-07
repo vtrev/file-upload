@@ -13,7 +13,8 @@ class App extends React.Component {
 		this.state = {
 			quizAttachmentFile : null,
 			img : null,
-			clientUrl:''
+			clientUrl:"holder.d7e9ba75.jpg",
+			error: ''
 
 		}
 		this.onChangeHandler = this.onChangeHandler.bind(this);
@@ -33,22 +34,31 @@ class App extends React.Component {
 		formData.append('quizAttachment', this.state.quizAttachmentFile);
 
 		axios.post('/api/uploadQuizAttachment',formData).then((res)=>{
-
+			console.log(res.data)
+			if(res.data.error){
+				this.setState({
+					error:res.data.error,
+					clientUrl:"holder.d7e9ba75.jpg"
+				})
+				return
+			}
 			this.setState({
-				clientUrl : "data:image/png;base64, "+res.data.base64img
+				clientUrl : "data:image/png;base64, "+res.data.base64img,
+				error:''
 			})
 		});
 	}
 	
 	render() {
-		return <div className="row">
-			<div className="col-8">
-		<form  method='post' encType="multipart/form-data">
+		return <div className="col-8">
+			<form  method='post' encType="multipart/form-data">
 			<input type="file" name="quizAttachment" onChange={this.onChangeHandler}/>
 			<button type='button' value='upload' onClick={this.onClickHandler}>Upload Image</button>
+			<br/>
+			<p className="error">{this.state.error}</p>
 		</form>
-		</div>
-		<div className="col-4">
+		<br/>
+		<div className="">
 			<img src={ this.state.clientUrl }  alt=""/>
 		</div>
 		</div>	

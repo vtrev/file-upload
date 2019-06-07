@@ -27434,7 +27434,8 @@ function (_React$Component) {
     _this.state = {
       quizAttachmentFile: null,
       img: null,
-      clientUrl: ''
+      clientUrl: "holder.d7e9ba75.jpg",
+      error: ''
     };
     _this.onChangeHandler = _this.onChangeHandler.bind(_assertThisInitialized(_this));
     _this.onClickHandler = _this.onClickHandler.bind(_assertThisInitialized(_this));
@@ -27457,8 +27458,20 @@ function (_React$Component) {
       var formData = new FormData();
       formData.append('quizAttachment', this.state.quizAttachmentFile);
       axios.post('/api/uploadQuizAttachment', formData).then(function (res) {
+        console.log(res.data);
+
+        if (res.data.error) {
+          _this2.setState({
+            error: res.data.error,
+            clientUrl: "holder.d7e9ba75.jpg"
+          });
+
+          return;
+        }
+
         _this2.setState({
-          clientUrl: "data:image/png;base64, " + res.data.base64img
+          clientUrl: "data:image/png;base64, " + res.data.base64img,
+          error: ''
         });
       });
     }
@@ -27466,8 +27479,6 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       return React.createElement("div", {
-        className: "row"
-      }, React.createElement("div", {
         className: "col-8"
       }, React.createElement("form", {
         method: "post",
@@ -27480,8 +27491,10 @@ function (_React$Component) {
         type: "button",
         value: "upload",
         onClick: this.onClickHandler
-      }, "Upload Image"))), React.createElement("div", {
-        className: "col-4"
+      }, "Upload Image"), React.createElement("br", null), React.createElement("p", {
+        className: "error"
+      }, this.state.error)), React.createElement("br", null), React.createElement("div", {
+        className: ""
       }, React.createElement("img", {
         src: this.state.clientUrl,
         alt: ""
@@ -27521,7 +27534,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38437" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45201" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
