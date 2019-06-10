@@ -1,15 +1,18 @@
 <html>
+
 <head>
 	<title>Upload file</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/simple-grid.e514fe0d.css">
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 	<style>.center {
 			text-align: center;
 		}
-		.error{
-			color:red
+
+		.error {
+			color: red
 		}
 
 		#quiz-attachment img {
@@ -20,7 +23,7 @@
 <script src="/simple-grid.e514fe0d.js"></script></head>
 
 <body>
-
+	
 
 	<div class="row">
 		<div class="col-12 center">
@@ -29,53 +32,34 @@
 		<div id="quiz-attachment" class="row">
 
 		</div>
-		<div>
-			<img id="attchment-photo" class="image-preview">
-		</div>
-	</div>
-
-
-	<div>
-
-
+		<!-- <div>
+			<img id="attchment-photo" class="image-preview" />
+		</div> -->
 	</div>
 	
-	<script>function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+	
 
-function uploadQuizAttachment() {
-  return _uploadQuizAttachment.apply(this, arguments);
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+	</script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+	</script>
+	<script src="/client.78399e21.js"></script>
+	<script>function centerModal() {
+  $(this).css('display', 'block');
+  var $dialog = $(this).find(".modal-dialog");
+  var offset = ($(window).height() - $dialog.height()) / 2; // Center modal vertically in window
+
+  $dialog.css("margin-top", offset);
 }
 
-function _uploadQuizAttachment() {
-  _uploadQuizAttachment = _asyncToGenerator(
-  /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee() {
-    var upload;
-    return regeneratorRuntime.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            _context.next = 2;
-            return axios.post('/api/uploadQuizAttachment', {
-              name: quizAttachment
-            });
+$('.modal').on('show.bs.modal', centerModal);
+$(window).on("resize", function () {
+  $('.modal:visible').each(centerModal);
+});</script>
 
-          case 2:
-            upload = _context.sent;
-            console.log(upload);
-
-          case 4:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  }));
-  return _uploadQuizAttachment.apply(this, arguments);
-}</script>
-	<script src="/client.78399e21.js"></script>
 </body>
 
 </html>

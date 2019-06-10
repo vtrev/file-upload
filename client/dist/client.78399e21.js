@@ -27419,6 +27419,7 @@ var ReactDOM = require('react-dom');
 var axios = require('axios');
 
 var app = document.querySelector('#quiz-attachment');
+var app2 = document.querySelector('#quiz-attachment-img');
 
 var App =
 /*#__PURE__*/
@@ -27458,8 +27459,6 @@ function (_React$Component) {
       var formData = new FormData();
       formData.append('quizAttachment', this.state.quizAttachmentFile);
       axios.post('/api/uploadQuizAttachment', formData).then(function (res) {
-        console.log(res.data);
-
         if (res.data.error) {
           _this2.setState({
             error: res.data.error,
@@ -27468,6 +27467,8 @@ function (_React$Component) {
 
           return;
         }
+
+        globalClientUrl = "data:image/png;base64, " + res.data.base64img;
 
         _this2.setState({
           clientUrl: "data:image/png;base64, " + res.data.base64img,
@@ -27496,14 +27497,46 @@ function (_React$Component) {
       }, this.state.error)), React.createElement("br", null), React.createElement("div", {
         className: ""
       }, React.createElement("img", {
+        className: "img-responsive",
+        "data-toggle": "modal",
+        "data-target": "#quizModal",
         src: this.state.clientUrl,
         alt: ""
+      })), React.createElement("div", null, React.createElement(App2, {
+        clientUrl: this.state.clientUrl
       })));
     }
   }]);
 
   return App;
 }(React.Component);
+
+function App2(_ref) {
+  var clientUrl = _ref.clientUrl;
+  return React.createElement("div", {
+    className: ""
+  }, React.createElement("div", {
+    id: "quizModal",
+    class: "modal fade",
+    tabindex: "-1",
+    role: "dialog",
+    "aria-labelledby": "quizModalLabel",
+    "aria-hidden": "true"
+  }, React.createElement("div", {
+    class: "modal-dialog"
+  }, React.createElement("div", {
+    class: "modal-content"
+  }, React.createElement("div", {
+    class: "modal-body",
+    id: "quiz-attachment-img"
+  }, React.createElement("img", {
+    className: "img-responsive col-8",
+    "data-toggle": "modal",
+    "data-target": "#quizModal",
+    src: clientUrl,
+    alt: ""
+  }))))));
+}
 
 ReactDOM.render(React.createElement(App, null), app);
 },{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","axios":"../node_modules/axios/index.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -27534,7 +27567,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45201" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45249" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
